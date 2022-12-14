@@ -1,9 +1,15 @@
 using Agenda.Models;
+using Agenda.Servicios;
+using Agenda.Servicios.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 //var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
+
+builder.Services.AddScoped<IContacts, ContactsServices>();
+
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
     "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=db_Agenda;Integrated Security=True"));

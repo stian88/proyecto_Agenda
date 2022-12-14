@@ -13,7 +13,7 @@ namespace Agenda.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+       // [HttpPost]
         public IActionResult Index()
         {
             return View();

@@ -8,9 +8,9 @@ namespace Agenda.Controllers
     public class ContactsController : Controller
     {
         private readonly IContacts _contactsServices;
-        public ContactsController(IContacts ContactsServices)
+        public ContactsController(IContacts contactsServices)
         {
-            _contactsServices = ContactsServices;
+            _contactsServices = contactsServices;
         }
         public IActionResult Index(int Iduser)
         {
@@ -19,14 +19,14 @@ namespace Agenda.Controllers
           
         }
 
-        [Authorize]
+  
         public IActionResult getContacts(int idUser)
         {
             var response = _contactsServices.list(idUser);
             return View(response);
         }
 
-        [Authorize]
+        
         public IActionResult deleteContact(int idContact, int idUser)
         {
             var response = _contactsServices.delete(idContact, idUser);
@@ -34,7 +34,7 @@ namespace Agenda.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
+      
         public IActionResult createContact(createContactDTO contact, string idUser)
         {
             var response = _contactsServices.Create(contact, idUser);
@@ -42,7 +42,7 @@ namespace Agenda.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
+       
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public IActionResult updateContact(updateContactDTO updateC)
