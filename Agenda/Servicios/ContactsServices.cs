@@ -14,12 +14,21 @@ namespace Agenda.Servicios
             _context = context;
         }
 
-        public IEnumerable<responseContactDTO> list(int idUser)
+        public IEnumerable<responseContactDTO> list(string idUser)
         {
 
               var response = _context.Contactos
-                .Select(Iduser => new responseContactDTO(Iduser))
-                .ToList();
+                .Include(x => x.User)
+                .Where(c => c.idUser.Equals(idUser))
+                .Select(c => new responseContactDTO(c)
+             {
+                 Id = c.Id,
+                 Name = c.Name,
+                 Surname = c.Surname,
+                 Tel = c.Tel
+                
+             })
+              .ToList();
 
             return response;
         }

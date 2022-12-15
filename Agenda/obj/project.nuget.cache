@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pUxb6FiQiFMKZcxDE9QSNOdlv+VZ+wHeKZZQ8cLyVWnsU/wBvdiOg+mXwYv0Y9LYdTQlj6DKyJC+P35sSEkRMw==",
+  "dgSpecHash": "kp+11La5QH2LNLUto6DqmLiQJZMg4eWT4r0IqkOPshLIqX84hzYLarPR6Lnh2yqxdt15xczsMnpcpgQxi0h0Rw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sebastianr\\source\\repos\\Agenda\\Agenda\\Agenda.csproj",
+  "projectFilePath": "C:\\Users\\sebastianr\\Documents\\GitHub\\proyecto_Agenda\\Agenda\\Agenda.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sebastianr\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\sebastianr\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

@@ -10652,11 +10652,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sebastianr\\source\\repos\\Agenda\\Agenda\\Agenda.csproj",
+      "projectUniqueName": "C:\\Users\\sebastianr\\Documents\\GitHub\\proyecto_Agenda\\Agenda\\Agenda.csproj",
       "projectName": "Agenda",
-      "projectPath": "C:\\Users\\sebastianr\\source\\repos\\Agenda\\Agenda\\Agenda.csproj",
+      "projectPath": "C:\\Users\\sebastianr\\Documents\\GitHub\\proyecto_Agenda\\Agenda\\Agenda.csproj",
       "packagesPath": "C:\\Users\\sebastianr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sebastianr\\source\\repos\\Agenda\\Agenda\\obj\\",
+      "outputPath": "C:\\Users\\sebastianr\\Documents\\GitHub\\proyecto_Agenda\\Agenda\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sebastianr\\AppData\\Roaming\\NuGet\\NuGet.Config",

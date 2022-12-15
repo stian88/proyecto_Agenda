@@ -2,25 +2,34 @@
 using Agenda.DTOs;
 using Agenda.Servicios.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Agenda.Servicios;
 
 namespace Agenda.Controllers
 {
     public class ContactsController : Controller
     {
         private readonly IContacts _contactsServices;
-        public ContactsController(IContacts contactsServices)
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ContactsController(IContacts contactsServices, UserManager<IdentityUser> userManager)
+
         {
             _contactsServices = contactsServices;
+            _userManager = userManager;
         }
-        public IActionResult Index(int Iduser)
+        public IActionResult Index()
         {
-            var reponse = _contactsServices.list(Iduser);
+            var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var reponse = _contactsServices.list(idUserCurrent);
+
             return View(reponse);
           
         }
 
   
-        public IActionResult getContacts(int idUser)
+        public IActionResult getContacts(string idUser)
         {
             var response = _contactsServices.list(idUser);
             return View(response);
