@@ -66,6 +66,7 @@ namespace Agenda.Servicios
                 Surname = newContact.Surname,
                 Tel = newContact.Tel,
                 CreatedDate = DateTime.Now,
+                idUser = idUser, 
             };
 
             var result = _context.Contactos.Add(c);

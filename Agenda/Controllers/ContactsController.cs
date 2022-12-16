@@ -48,7 +48,8 @@ namespace Agenda.Controllers
         [Authorize]
         public IActionResult createContact(createContactDTO contact, string idUser)
         {
-            var response = _contactsServices.Create(contact, idUser);
+            var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var response = _contactsServices.Create(contact, idUserCurrent);
 
             return RedirectToAction("Index");
         }
@@ -73,7 +74,15 @@ namespace Agenda.Controllers
                 return NotFound();
             }
         }
+        public IActionResult Form()
+        {
+            return View();
+        }
 
+        public IActionResult Update()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

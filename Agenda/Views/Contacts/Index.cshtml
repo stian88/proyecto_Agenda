@@ -4,24 +4,21 @@
 
 <h1>CONTACTOS</h1>
 <div class="row"> </div>
-    @foreach(var t in Model){
+    @foreach(var c in Model){
 
     <div class="card m-1" style="width: 18rem; ">
      <div class="card-body">
-    <h5 class="card-title">@Html.DisplayFor(m => t.Name)</h5>
-    <p class="card-text text-muted">@Html.DisplayFor(m => t.Surname)</p>
-    <p href="#" class="card-link">@Html.DisplayFor(m => t.Tel)</p>
+    <h5 class="card-title">@Html.DisplayFor(m => c.Name)</h5>
+    <p class="card-text text-muted">@Html.DisplayFor(m => c.Surname)</p>
+    <p href="#" class="card-link">@Html.DisplayFor(m => c.Tel)</p>
 
-    <a asp-action="deleteContact" asp-route-id="@t.Id" >
-    <i class="fa fa-trash fa-2x" aria-hidden="true" ></i>
+    <a asp-action="deleteContact" asp-route-id="@c.Id" >
+    <i class="fas fa-trash fa-2x m-lg-2" aria-hidden="true"></i>
     </a>
-    <a asp-action="updateContact" asp-route-id="@t.Id" >
-    <i class="fa fa-pencil fa-2x m-lg-2" aria-hidden="true"></i>
+    <a asp-action="Update" asp-route-id="@c.Id">
+    <i class="fas fa-pencil fa-2x m-lg-2" aria-hidden="true"></i>
     </a>
-     <a asp-action="createContact" asp-route-id="@t.Id" asp-controller="Contacts">
-    <i class="bi bi-clipboard2-check-fill bi-2x" aria-hidden="true"></i>
-    </a>
-              
+                 
   </div>
 </div>
 
