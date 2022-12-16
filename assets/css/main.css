@@ -1,0 +1,33 @@
+.titulo-h1{
+font-size: 30px;
+font-family: 'Courier New', Courier, monospace;
+color: rgb(42, 165, 144);
+}
+
+.contenedor{
+text-align: center;
+ }
+
+ .btn-blue{
+    background-color: #008CBA;
+    color: antiquewhite;
+    border: none;
+    font-size: 15px;
+    padding: 10px;
+    cursor: pointer;
+ }
+
+ .btn-blue:hover{
+    background-color: #008bbaa1;
+ }
+ .input-tarea{
+    width: 33%;
+    padding: 9.5px;
+    border: 1.5px solid rgba(0, 0, 0, 0.178)
+ }
+
+ .listado{
+    list-style: none;
+    padding-top: 10px;
+    padding-right: 120px;
+ }
