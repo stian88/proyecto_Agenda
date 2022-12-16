@@ -36,11 +36,11 @@ namespace Agenda.Controllers
             var response = _contactsServices.list(idUser);
             return View(response);
         }
-
-        [Authorize]
-        public IActionResult deleteContact(int idContact, string idUser)
+                
+        public IActionResult deleteContact(int idContact)
         {
-            var response = _contactsServices.delete(idContact, idUser);
+            
+            var response = _contactsServices.delete(idContact);
 
             return RedirectToAction("Index");
         }
@@ -54,12 +54,13 @@ namespace Agenda.Controllers
             return RedirectToAction("Index");
         }
 
-       
+        [Authorize]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public IActionResult updateContact(updateContactDTO updateC)
+        public IActionResult updateContact(updateContactDTO updateC, string isUser)
         {
-            var response = _contactsServices.updateContact(updateC);
+            var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var response = _contactsServices.updateContact(updateC, idUserCurrent);
 
             if (response)
 

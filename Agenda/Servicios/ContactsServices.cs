@@ -2,16 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using Agenda.DTOs;
 using Agenda.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Agenda.Servicios
 {
     public class ContactsServices : IContacts
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public ContactsServices(AppDbContext context)
+        public ContactsServices(AppDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IEnumerable<responseContactDTO> list(string idUser)
@@ -31,32 +34,7 @@ namespace Agenda.Servicios
               .ToList();
 
             return response;
-        }
-    
-        public mensajeContactDTO delete (int idContact, string idUser)
-        {
-            var contact = _context.Contactos.Where(c => c.Id == idContact).FirstOrDefault();
-
-            if(contact != null)
-            {
-
-                _context.Contactos.Remove(contact);
-                _context.SaveChanges();
-                return new mensajeContactDTO()
-                {
-                    estado = "Borrado",
-                    mensaje = $"El contacto con id: {idUser} fue borrado correctamente"
-                };
-            }
-            else
-            {
-                return new mensajeContactDTO()
-                {
-                    estado = "Error",
-                    mensaje = $"El contacto con id: {idUser} no existe en la base de datos"
-                };
-            }
-        }
+        }    
 
         public bool Create(createContactDTO newContact, string idUser)
         {
@@ -74,11 +52,13 @@ namespace Agenda.Servicios
             return true;
         }
 
-        public bool updateContact(updateContactDTO updateC)
+
+        public bool updateContact(updateContactDTO updateC, string idUserCurrent)
         {
-            var Contact = _context.Contactos.Include(c => c.Name)
+            var Contact = _context.Contactos
                 .Where(c => c.Id == updateC.Id)
                 .FirstOrDefault();  
+
             if(Contact != null)
             {
                 Contact.Name = updateC.Name;    
@@ -88,6 +68,32 @@ namespace Agenda.Servicios
                 return true;
             }
             return false;
+        }
+
+        public mensajeContactDTO delete(int idContact)
+        {            
+            var contact = _context.Contactos.Where(c => c.Id == idContact)
+                .FirstOrDefault();
+
+            if (contact != null)
+            {
+
+                _context.Contactos.Remove(contact);
+                _context.SaveChanges();
+                return new mensajeContactDTO()
+                {
+                    estado = "Borrado",
+                    mensaje = $"El contacto con id: {contact} fue borrado correctamente"
+                };
+            }
+            else
+            {
+                return new mensajeContactDTO()
+                {
+                    estado = "Error",
+                    mensaje = $"El contacto con id: {contact} no existe en la base de datos"
+                };
+            }
         }
     }
 }
