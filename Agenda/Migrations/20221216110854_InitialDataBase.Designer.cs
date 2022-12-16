@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agenda.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221215161616_DataBase-ForeignKey")]
-    partial class DataBaseForeignKey
+    [Migration("20221216110854_InitialDataBase")]
+    partial class InitialDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

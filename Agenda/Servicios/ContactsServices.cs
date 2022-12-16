@@ -33,7 +33,7 @@ namespace Agenda.Servicios
             return response;
         }
     
-        public mensajeContactDTO delete (int idContact, int idUser)
+        public mensajeContactDTO delete (int idContact, string idUser)
         {
             var contact = _context.Contactos.Where(c => c.Id == idContact).FirstOrDefault();
 

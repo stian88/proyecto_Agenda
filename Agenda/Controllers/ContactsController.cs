@@ -19,6 +19,8 @@ namespace Agenda.Controllers
             _contactsServices = contactsServices;
             _userManager = userManager;
         }
+
+        [Authorize]
         public IActionResult Index()
         {
             var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -28,22 +30,22 @@ namespace Agenda.Controllers
           
         }
 
-  
+        [Authorize]
         public IActionResult getContacts(string idUser)
         {
             var response = _contactsServices.list(idUser);
             return View(response);
         }
 
-        
-        public IActionResult deleteContact(int idContact, int idUser)
+        [Authorize]
+        public IActionResult deleteContact(int idContact, string idUser)
         {
             var response = _contactsServices.delete(idContact, idUser);
 
             return RedirectToAction("Index");
         }
 
-      
+        [Authorize]
         public IActionResult createContact(createContactDTO contact, string idUser)
         {
             var response = _contactsServices.Create(contact, idUser);

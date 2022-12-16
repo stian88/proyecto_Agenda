@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Agenda.Models
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>   
+    public class AppDbContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
         public AppDbContext(DbContextOptions options) : base(options)
-        { 
-        
+        {
+
         }
-         
-        public DbSet<Contactos> Contactos { get; set; }    
+
+        public DbSet<Contactos> Contactos { get; set; }
     }
 
 }
