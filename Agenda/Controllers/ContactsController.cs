@@ -58,6 +58,7 @@ namespace Agenda.Controllers
         }
 
 
+        [Authorize]
         public IActionResult Edit(int Id)
         {
             if (Id == null)
@@ -112,7 +113,7 @@ namespace Agenda.Controllers
             return RedirectToAction("Index");
         }
 
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
