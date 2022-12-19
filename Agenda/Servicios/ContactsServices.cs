@@ -25,7 +25,7 @@ namespace Agenda.Servicios
                 .Where(c => c.idUser.Equals(idUser))
                 .Select(c => new responseContactDTO(c)
              {
-                 Id = c.Id,
+                    Id = c.Id,
                  Name = c.Name,
                  Surname = c.Surname,
                  Tel = c.Tel
@@ -34,7 +34,18 @@ namespace Agenda.Servicios
               .ToList();
 
             return response;
-        }    
+        }
+
+        public responseContactDTO Get(int idContact)
+        {
+            var contact = _context.Contactos
+                  .Where(c => c.Id == idContact)
+                 .Select(t => new responseContactDTO(t))
+                 .FirstOrDefault();
+
+            return contact;
+        }
+
 
         public bool Create(createContactDTO newContact, string idUser)
         {
@@ -53,8 +64,8 @@ namespace Agenda.Servicios
         }
 
 
-        public bool updateContact(updateContactDTO updateC, string idUserCurrent)
-        {
+        public bool Update(updateContactDTO updateC)
+        {            
             var Contact = _context.Contactos
                 .Where(c => c.Id == updateC.Id)
                 .FirstOrDefault();  
@@ -70,8 +81,9 @@ namespace Agenda.Servicios
             return false;
         }
 
-        public mensajeContactDTO delete(int idContact)
-        {            
+        public mensajeContactDTO Delete( int idContact)
+        {
+            
             var contact = _context.Contactos.Where(c => c.Id == idContact)
                 .FirstOrDefault();
 
@@ -83,7 +95,7 @@ namespace Agenda.Servicios
                 return new mensajeContactDTO()
                 {
                     estado = "Borrado",
-                    mensaje = $"El contacto con id: {contact} fue borrado correctamente"
+                    mensaje = $"El contacto con id: {idContact} fue borrado correctamente"
                 };
             }
             else
@@ -91,7 +103,7 @@ namespace Agenda.Servicios
                 return new mensajeContactDTO()
                 {
                     estado = "Error",
-                    mensaje = $"El contacto con id: {contact} no existe en la base de datos"
+                    mensaje = $"El contacto con id: {idContact} no existe en la base de datos"
                 };
             }
         }

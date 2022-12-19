@@ -43,16 +43,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sebastianr/Documents/GitHub/proyecto_Agenda/Agenda/Views/Contacts/Form.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcRm9ybS5jc2h0bWw=
+[C:/Users/sebastianr/Documents/GitHub/proyecto_Agenda/Agenda/Views/Contacts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sebastianr/Documents/GitHub/proyecto_Agenda/Agenda/Views/Contacts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/sebastianr/Documents/GitHub/proyecto_Agenda/Agenda/Views/Contacts/Update.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcVXBkYXRlLmNzaHRtbA==
+[C:/Users/sebastianr/Documents/GitHub/proyecto_Agenda/Agenda/Views/Contacts/New.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdHNcTmV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sebastianr/Documents/GitHub/proyecto_Agenda/Agenda/Views/Home/Index.cshtml]

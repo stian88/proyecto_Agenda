@@ -31,19 +31,22 @@ namespace Agenda.Controllers
         }
 
         [Authorize]
+        public IActionResult getContact(int idContact)
+
+        {
+
+            var response = _contactsServices.Get(idContact);
+            return View(response);
+        }
+
+
+        [Authorize]
         public IActionResult getContacts(string idUser)
         {
             var response = _contactsServices.list(idUser);
             return View(response);
         }
-                
-        public IActionResult deleteContact(int idContact)
-        {
-            
-            var response = _contactsServices.delete(idContact);
-
-            return RedirectToAction("Index");
-        }
+        
 
         [Authorize]
         public IActionResult createContact(createContactDTO contact, string idUser)
@@ -54,13 +57,32 @@ namespace Agenda.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public IActionResult Edit(int Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+
+            var contact = _contactsServices.Get(Id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            return View(contact);
+        }
+
+
         [Authorize]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public IActionResult updateContact(updateContactDTO updateC, string isUser)
+        public IActionResult updateContact(updateContactDTO update, string idUser)
         {
             var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = _contactsServices.updateContact(updateC, idUserCurrent);
+            var response = _contactsServices.Update(update);
 
             if (response)
 
@@ -75,15 +97,22 @@ namespace Agenda.Controllers
                 return NotFound();
             }
         }
-        public IActionResult Form()
+
+        public IActionResult New()
         {
             return View();
         }
 
-        public IActionResult Update()
-        {
-            return View();
+
+        [Authorize]
+        public IActionResult deleteContact(int Id)
+        {            
+            var response = _contactsServices.Delete(Id);
+
+            return RedirectToAction("Index");
         }
+
+
         public IActionResult Privacy()
         {
             return View();

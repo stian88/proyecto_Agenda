@@ -1,18 +1,14 @@
-﻿@model Agenda.DTOs.updateContactDTO
+﻿@model Agenda.DTOs.responseContactDTO
 
-@{
-    ViewData["Title"] = "Edit";
-}
 
 <h1>Editar</h1>
 @{
 }
-<hr />
-<div class="row">
     <div class="col-md-4">
-        <form asp-action="update">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -33,7 +29,6 @@
             </div>
         </form>
     </div>
-</div>
 
 <div>
     <a asp-action="Index">Volver...</a>
