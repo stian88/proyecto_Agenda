@@ -61,7 +61,7 @@ namespace Agenda.Servicios
             };
 
             var result = _context.Contactos.Add(c);
-            _ = _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return true;
         }
 
@@ -79,7 +79,7 @@ namespace Agenda.Servicios
                 Contact.Name = updateC.Name;    
                 Contact.Surname = updateC.Surname;
                 Contact.Tel = updateC.Tel;
-               _ = _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
                 return true;
             }
             return false;
