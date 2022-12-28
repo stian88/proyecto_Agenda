@@ -21,52 +21,52 @@ namespace Agenda.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var reponse = _contactsServices.list(idUserCurrent);
+            var reponse = await _contactsServices.list(idUserCurrent);
 
             return View(reponse);
           
         }
 
         [Authorize]
-        public IActionResult getContact(int idContact)
+        public async Task<IActionResult> getContact(int idContact)
 
         {
 
-            var response = _contactsServices.Get(idContact);
+            var response = await _contactsServices.Get(idContact);
             return View(response);
         }
 
 
         [Authorize]
-        public IActionResult getContacts(string idUser)
+        public async Task<IActionResult> getContacts(string idUser)
         {
-            var response = _contactsServices.list(idUser);
+            var response = await _contactsServices.list(idUser);
             return View(response);
         }
         
 
         [Authorize]
-        public IActionResult createContact(createContactDTO contact, string idUser)
+        public async Task<IActionResult> createContact(createContactDTO contact, string idUser)
         {
             var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = _contactsServices.Create(contact, idUserCurrent);
+            var response = await _contactsServices.Create(contact, idUserCurrent);
 
             return RedirectToAction("Index");
         }
 
 
         [Authorize]
-        public IActionResult Edit(int Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            if (Id == null)
+            if (Id == 0)
             {
                 return NotFound();
             }
 
-            var contact = _contactsServices.Get(Id);
+            var contact = await _contactsServices.Get(Id);
 
             if (contact == null)
             {
@@ -80,10 +80,10 @@ namespace Agenda.Controllers
         [Authorize]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public IActionResult updateContact(updateContactDTO update, string idUser)
+        public async Task<IActionResult> updateContact(updateContactDTO update, string idUser)
         {
             var idUserCurrent = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = _contactsServices.Update(update);
+            var response = await _contactsServices.Update(update, idUser);
 
             if (response)
 
@@ -99,19 +99,21 @@ namespace Agenda.Controllers
             }
         }
 
+       
+        [Authorize]
+        public async Task<IActionResult> deleteContact(int Id)
+        {            
+            var response = await _contactsServices.Delete(Id);
+
+            return RedirectToAction("Index");
+        }
+
+
         public IActionResult New()
         {
             return View();
         }
 
-
-        [Authorize]
-        public IActionResult deleteContact(int Id)
-        {            
-            var response = _contactsServices.Delete(Id);
-
-            return RedirectToAction("Index");
-        }
 
         [Authorize]
         public IActionResult Privacy()

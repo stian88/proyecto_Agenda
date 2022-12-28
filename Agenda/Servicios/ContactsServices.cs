@@ -17,81 +17,85 @@ namespace Agenda.Servicios
             _userManager = userManager;
         }
 
-        public IEnumerable<responseContactDTO> list(string idUser)
+        public async Task<IEnumerable<responseContactDTO>> list(string idUser)
         {
 
-              var response = _context.Contactos
+              var response = await _context.Contactos
                 .Include(x => x.User)
                 .Where(c => c.idUser.Equals(idUser))
                 .Select(c => new responseContactDTO(c)
              {
-                    Id = c.Id,
+                 Id = c.Id,
                  Name = c.Name,
                  Surname = c.Surname,
                  Tel = c.Tel
                 
              })
-              .ToList();
+              .ToListAsync();
 
             return response;
         }
 
-        public responseContactDTO Get(int idContact)
+        public async Task<responseContactDTO> Get(int idContact)
         {
-            var contact = _context.Contactos
+            var contact = await _context.Contactos
                   .Where(c => c.Id == idContact)
                  .Select(t => new responseContactDTO(t))
-                 .FirstOrDefault();
+                 .FirstOrDefaultAsync();
 
             return contact;
         }
 
 
-        public bool Create(createContactDTO newContact, string idUser)
+        public async Task<bool> Create(createContactDTO newContact, string idUser)
         {
+            var user = await _userManager.FindByIdAsync(idUser);
+
             var c = new Contactos()
             {
                 Name = newContact.Name,
                 Surname = newContact.Surname,
                 Tel = newContact.Tel,
                 CreatedDate = DateTime.Now,
-                idUser = idUser, 
+                idUser = idUser,
             };
 
             var result = _context.Contactos.Add(c);
-            _context.SaveChanges();
+            _ = _context.SaveChangesAsync();
             return true;
         }
 
 
-        public bool Update(updateContactDTO updateC)
-        {            
-            var Contact = _context.Contactos
+        public async Task<bool> Update(updateContactDTO updateC, string idUser)
+        {
+            var user = await _userManager.FindByIdAsync(idUser);
+
+            var Contact = await _context.Contactos
                 .Where(c => c.Id == updateC.Id)
-                .FirstOrDefault();  
+                .FirstAsync();  
 
             if(Contact != null)
             {
                 Contact.Name = updateC.Name;    
                 Contact.Surname = updateC.Surname;
                 Contact.Tel = updateC.Tel;
-                _context.SaveChanges();
+               _ = _context.SaveChangesAsync();
                 return true;
             }
             return false;
         }
 
-        public mensajeContactDTO Delete( int idContact)
+        public async Task<mensajeContactDTO> Delete( int idContact)
         {
             
-            var contact = _context.Contactos.Where(c => c.Id == idContact)
-                .FirstOrDefault();
+            var contact = await _context.Contactos.Where(c => c.Id == idContact)
+                .FirstOrDefaultAsync();
 
             if (contact != null)
             {
 
-                _context.Contactos.Remove(contact);
-                _context.SaveChanges();
+                 _context.Contactos.Remove(contact);
+                 _context.SaveChanges();
                 return new mensajeContactDTO()
                 {
                     estado = "Borrado",
